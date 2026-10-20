@@ -7,6 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fix layout
+        run: |
+          J=src/main/java/dev/pulse/extra
+          mkdir -p $J/mixin src/main/resources
+          mv ClickGui.java Mods.java PulseExtra.java $J/
+          mv *Mixin.java $J/mixin/
+          mv fabric.mod.json pulseextra.mixins.json src/main/resources/
+          find src -type f
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
